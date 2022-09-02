@@ -34,16 +34,31 @@ body {
   align-items: center;
   position: relative; }
 
-.rules {
+.rules-modal {
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(139, 139, 139, 0.329);
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.rules {
   background-color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2rem;
+  padding: 2rem 3rem;
   border-radius: 10px; }
+  .rules div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem; }
+  .rules .close-btn {
+    cursor: pointer;
+    border: none; }
   .rules img {
-    margin-top: 1rem; }
+    margin-top: 2rem; }
 
 .rules-btn {
   position: absolute;
@@ -130,3 +145,6 @@ body {
     transform: translate(-50%, 50%);
     border-radius: 50%;
     background-image: radial-gradient(ellipse closest-side, var(--scissors-color-one) 90%, var(--scissors-color-two) 10%); }
+
+.hide {
+  display: none; }
