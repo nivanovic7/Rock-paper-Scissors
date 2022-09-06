@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css" />
-    <script src="index.js" defer></script>
+    <script defer src="index.js"></script>
   </head>
   <body>
     <div class="container">
@@ -16,15 +16,34 @@
           <p class="result-num">10</p>
         </div>
       </div>
-      <div class="board">
-        <div class="circle circle-left">
-          <div class="circle-inner circle-rock"></div>
+      <div class="board hide">
+        <div class="circle circle-left circle-paper" id="paper">
+          <div class="circle-inner"></div>
         </div>
-        <div class="circle circle-right">
-          <div class="circle-inner circle-paper"></div>
+        <div class="circle circle-right circle-scissors" id="scissors">
+          <div class="circle-inner"></div>
         </div>
-        <div class="circle circle-bottom">
-          <div class="circle-inner circle-scissors"></div>
+        <div class="circle circle-bottom circle-rock" id="rock">
+          <div class="circle-inner"></div>
+        </div>
+      </div>
+
+      <div class="match-moves">
+        <p>You picked</p>
+        <p class="col-span-2">The house picked</p>
+        <div class="player-move">
+          <div class="circle circle-rock" id="rock">
+            <div class="circle-inner"></div>
+          </div>
+        </div>
+        <div class="message-container">
+          <div class="message"><button>Play again</button></div>
+        </div>
+        <div class="cpu-move">
+          <div class="winner"></div>
+          <div class="circle circle-paper" id="rock">
+            <div class="circle-inner"></div>
+          </div>
         </div>
       </div>
 

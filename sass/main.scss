@@ -22,13 +22,13 @@
   //object colors
 
   --scissors-color-one: hsl(39, 89%, 49%);
-  --scissors-color-two: hsl(40, 84%, 53%);
+  --scissors-color-two: hsl(40, 72%, 40%);
 
-  --rock-color-one: hsl(349, 71%, 52%);
+  --rock-color-one: hsl(349, 62%, 32%);
   --rock-color-two: hsl(349, 47%, 44%);
 
   --paper-color-one: hsl(230, 89%, 62%);
-  --paper-color-two: hsl(230, 89%, 65%);
+  --paper-color-two: hsl(230, 50%, 43%);
 
   --lizard-color-one: hsl(261, 73%, 60%);
   --lizard-color-two: hsl(261, 72%, 63%);
@@ -42,7 +42,7 @@ body {
 }
 
 .container {
-  background-color: rgb(88, 29, 29);
+  background-color: var(--bg-color-one);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -76,6 +76,9 @@ body {
     font-size: 2rem;
   }
   .close-btn {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
     cursor: pointer;
     border: none;
   }
@@ -140,89 +143,141 @@ body {
 //PLAYING BOARD
 
 .board {
-  position: relative;
+  width: 250px;
+  height: 200px;
   margin-top: 5rem;
+  background-image: url("../rock-paper-scissors-master/images/bg-triangle.svg");
+  background-size: 100% 100%;
+  position: relative;
+}
 
-  img {
-    width: 250px;
+.circle {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  border-radius: 50%;
+  padding: 18px;
+  background-size: 115% 115%;
+  background-position: 50% 90%;
+  cursor: pointer;
+
+  .circle-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    background-size: 45%, 110% 110%;
+    background-position: center, 50% 0;
+    background-repeat: no-repeat;
   }
+}
+
+.circle-left {
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.circle-right {
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+.circle-bottom {
+  bottom: 0;
+  left: 50%;
+}
+
+.circle-rock > div {
+  background-image: url(../rock-paper-scissors-master/images/icon-rock.svg),
+    radial-gradient(ellipse closest-side, white 90%, rgb(201, 196, 196) 91%);
+}
+
+.circle-paper > div {
+  background-image: url(../rock-paper-scissors-master/images/icon-paper.svg),
+    radial-gradient(ellipse closest-side, white 90%, rgb(201, 196, 196) 91%);
+}
+
+.circle-scissors > div {
+  background-image: url(../rock-paper-scissors-master/images/icon-scissors.svg),
+    radial-gradient(ellipse closest-side, white 90%, rgb(201, 196, 196) 91%);
+}
+
+.circle-rock {
+  background-image: radial-gradient(
+    ellipse closest-side,
+    var(--rock-color-two) 90%,
+    var(--rock-color-one) 91%
+  );
+}
+
+.circle-scissors {
+  background-image: radial-gradient(
+    ellipse closest-side,
+    var(--scissors-color-one) 90%,
+    var(--scissors-color-two) 91%
+  );
+}
+
+.circle-paper {
+  background-image: radial-gradient(
+    ellipse closest-side,
+    var(--paper-color-one) 90%,
+    var(--paper-color-two) 91%
+  );
+}
+
+//CHOSEN MOVES
+
+.match-moves {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  position: relative;
+
+  & > * {
+    height: 100px;
+    background-color: rgb(230, 187, 107);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+
+    .circle {
+      scale: 1.2;
+    }
+  }
+}
+
+.cpu-move {
+  border-radius: 50%;
+  background-color: gray;
+  height: 100px;
+  width: 100px;
+  position: relative;
+}
+
+.winner {
+  position: absolute;
+  opacity: 0.5;
+  background-image: radial-gradient(
+    circle,
+    rgba(128, 128, 128, 0.5) 90px,
+    rgba(128, 128, 128, 0.5) 140px,
+    rgba(128, 128, 128, 0.13) 140px,
+    rgba(128, 128, 128, 0.13) 190px,
+    rgba(128, 128, 128, 0.5) 190px,
+    rgba(128, 128, 128, 0.5) 240px
+  );
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+}
+
+.col-span-2 {
+  grid-column-start: 3;
 }
 
 .hide {
   display: none;
-}
-
-.board {
-  width: 250px;
-  height: 250px;
-  background-image: url("../rock-paper-scissors-master/images/bg-triangle.svg");
-  background-size: 100% 100%;
-  position: relative;
-
-  .circle {
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    border-radius: 50%;
-    padding: 18px;
-    background-size: 115% 115%;
-    background-position: 50% 90%;
-
-    .circle-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-
-      background-size: auto, 110% 110%;
-      background-position: center, 50% 0;
-      background-repeat: no-repeat;
-    }
-
-    &-rock {
-      background-image: url(../rock-paper-scissors-master/images/icon-rock.svg),
-        radial-gradient(ellipse closest-side, white 91%, rgb(201, 196, 196) 9%);
-    }
-
-    &-paper {
-      background-image: url(../rock-paper-scissors-master/images/icon-paper.svg),
-        radial-gradient(ellipse closest-side, white 91%, rgb(201, 196, 196) 9%);
-    }
-
-    &-scissors {
-      background-image: url(../rock-paper-scissors-master/images/icon-scissors.svg),
-        radial-gradient(ellipse closest-side, white 91%, rgb(201, 196, 196) 9%);
-    }
-  }
-
-  .circle-left {
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    background-image: radial-gradient(
-      ellipse closest-side,
-      var(--paper-color-one) 90%,
-      var(--paper-color-two) 10%
-    );
-  }
-
-  .circle-right {
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-    background-image: radial-gradient(
-      ellipse closest-side,
-      var(--rock-color-two) 90%,
-      var(--rock-color-one) 10%
-    );
-  }
-  .circle-bottom {
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    background-image: radial-gradient(
-      ellipse closest-side,
-      var(--scissors-color-one) 90%,
-      var(--scissors-color-two) 10%
-    );
-  }
 }
