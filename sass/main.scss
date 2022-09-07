@@ -43,7 +43,7 @@ body {
 
 .container {
   background-color: var(--bg-color-one);
-  min-height: 100vh;
+  min-height: 120vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -186,6 +186,7 @@ body {
 .circle-bottom {
   bottom: 0;
   left: 50%;
+  transform: translate(-50%, 50%);
 }
 
 .circle-rock > div {
@@ -233,19 +234,26 @@ body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   position: relative;
+  justify-content: center;
+  align-items: center;
 
   & > * {
     height: 100px;
-    background-color: rgb(230, 187, 107);
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2rem;
+    justify-self: center;
 
     .circle {
       scale: 1.2;
     }
+  }
+
+  p {
+    font-size: 2.3rem;
+    color: white;
   }
 }
 
