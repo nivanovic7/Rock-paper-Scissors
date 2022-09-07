@@ -259,10 +259,15 @@ body {
 
 .cpu-move {
   border-radius: 50%;
-  background-color: gray;
+  background-color: rgba(128, 128, 128, 0.308);
   height: 100px;
   width: 100px;
   position: relative;
+}
+
+.message {
+  padding: 2rem;
+  background-color: red;
 }
 
 .winner {
